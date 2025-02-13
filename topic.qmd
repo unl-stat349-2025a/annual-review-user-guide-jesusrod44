@@ -4,3 +4,12 @@ Pick some subset of the information covered in your annual review article that y
 
 Identify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?
 
+My topic will be communicating risks of Hurricanes 
+
+I'll cover the basic visual rules the article gives to how visualizing risk should be done
+I'll also cover what should be highlighted when communicating risks of Hurricanes specifically with the use of geographical hazard maps
+
+The software package I first thought that would work was the maps package, here you can use the storms dataframe built into the tidyverse package 
+A very easy to use software package I found that work with natural disasters is the hurricaneexposure package
+
+
