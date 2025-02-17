@@ -1,0 +1,67 @@
+---
+title: "article-outline"
+editor: visual
+---
+
+My thesis of the article : 
+It is crucial to be able to communicate risk and uncertainty effectively. 
+It can help limit misunderstandings and even prevent death or catastrophe.
+To communicate risk, it is important to be clear of what you are trying to present and make sure that you are being clear the whole way. 
+
+Introduction 
+
+Main Idea: 
+What exactly is risk and uncertainty and why is it so important for it to be communicated well?
+
+How it Supports the Thesis: 
+The article brings up examples in the past and in the present of unclear communication of risk and the types of uncertainty. It highlights the critical need for effective communication in order to help people understand the risks with small things like diet and big things like global events. 
+
+Communicating Risks of Probabilities
+
+Main Idea: 
+There are many ways to express the chance of something happening, and it is important that your choice of format is clear as to what it is trying to say. 
+
+How it Supports the Thesis: 
+In order to prevent misleading people and to work with people's literal numeracy, it is important to format your expression of probability to something that is easy to be understood by many people and for your choice to fit with what you are trying to announce.
+
+Communicating Uncertainty About Numerical Risks
+
+Main Idea: 
+How to communicate uncertainty about numerical risks. 
+
+How it Supports the Thesis: 
+This passage talks about the ways to express uncertainty about the structure and models of statistical models (epistemic uncertainty) about the numerical risks in a modeling framework. So how you'd present risk in your model and how precise you can be without leaving any crucial information and estimates out. 
+
+
+Communicating Confidence in the Analytic Process
+
+Main Idea: 
+How to communicate limited scientific understanding while also expressing the confidence of your analysis
+
+How it Supports the Thesis: 
+It is important to acknowledge any limitations or uncertainty that was present during analysis and to make it clear when presenting the strength of your evidence.
+
+
+Brief Case Studies
+
+Main Idea: 
+There is no "one size fits all" way of presenting risk.
+
+How it Supports the Thesis: 
+It is important to understand the situation and express risk and uncertainty in a way that relates to the situation. 
+
+Conclusions
+
+Main Idea: 
+A framework to communicating risk and uncertainty effectively
+
+How it Supports the Thesis: 
+Having a framework to model how you acknowledge and present risk is helpful to be as clear as possible when discussing with others. 
+
+
+
+
+
+
+
+
