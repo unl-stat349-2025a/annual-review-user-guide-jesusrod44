@@ -34,7 +34,7 @@
     "href": "topic.html",
     "title": "Appendix A — Topic",
     "section": "",
-    "text": "Pick some subset of the information covered in your annual review article that you are interested in exploring in more detail.\nIdentify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?",
+    "text": "Pick some subset of the information covered in your annual review article that you are interested in exploring in more detail.\nIdentify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?\nMy topic will be communicating risks of Hurricanes\nI’ll cover the basic visual rules the article gives to how visualizing risk should be done I’ll also cover what should be highlighted when communicating risks of Hurricanes specifically with the use of geographical hazard maps\nThe software package I first thought that would work was the maps package, here you can use the storms dataframe built into the tidyverse package A very easy to use software package I found that work with natural disasters is the hurricaneexposure package",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Topic</span>"
