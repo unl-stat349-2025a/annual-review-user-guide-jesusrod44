@@ -10,6 +10,10 @@ I'll cover the basic visual rules the article gives to how visualizing risk shou
 I'll also cover what should be highlighted when communicating risks of Hurricanes specifically with the use of geographical hazard maps
 
 The software package I first thought that would work was the maps package, here you can use the storms dataframe built into the tidyverse package 
-A very easy to use software package I found that work with natural disasters is the hurricaneexposure package
+A very easy to use software package I found that works with natural disasters is the hurricaneexposure package
+
+UPDATE 3/5/25
+
+I don't think I'll be able to plot the predicted path of a hurricane like I wanted using ggplot2, instead I will provide a way to plot the eye path and either wind speed or flood risks and compare the plots based on the data of a hurricane, like Katrina, and compare them to actual released hazard maps published in order to see why it is hard to visualize hazards and risk in a cone map and how they may cause some confusion. 
 
 

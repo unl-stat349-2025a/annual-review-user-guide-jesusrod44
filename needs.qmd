@@ -1,9 +1,35 @@
 # Needs Assessment {.appendix}
 
-What does someone trying to accomplish your chosen task need help with? 
+What does someone trying to accomplish your chosen task need help with?
 
-What parts are likely to be tricky? 
+-   My original task, I wanted to try and plot the expected path of a hurricane using an ensemble / spaghetti plot, but I can't find a good way to do it
+
+<!-- -->
+
+-   Now I want my task to be just plotting the true path of a hurricane, and comparing it to an official cone map just to compare the two in order to see how it is so hard to visualize hazards for a hurricane
+-   I want someone to plot the path of Hurricane Katrina and try to scale the color of the path by strength
+-   This will be compared to an official map that was sent out during the time
+
+What parts are likely to be tricky?
+
+-   I've been trying to figure out how to plot the eye path of a hurricane and it is very tricky
+
+-   It is very challenging to learn how to do these plots using ggplot2 and the methods I've found use a different package to visualize plots
+
+-   Spatial features are needed in all the sources I have looked for
+
+-   If I can figure it out, I'd like to also plot wind damage ( or more realistically wind speed because I can't find a dataset with damage ) and also compare that to an official map that was released
 
 What resources are already available on this topic that may be helpful? Look for e.g. software vignettes, package documentation, papers about software packages, and so on.
 
+-   There is a webpage on using the hurricaneexposure package and its dependencies to visualize hurricane stats, this seems like the easiest way to do this, but it feels to reliant on one package
 
+    -   In fact, this doesn't really require a csv file at all
+
+    -   I don't want to rely on one package because I feel then that the knowledge gained from this can't transfer to another skill in R
+
+-   <https://cran.r-project.org/web/packages/hurricaneexposure/vignettes/hurricaneexposure.html>
+
+-   I've spent a lot of time looking for a good way to visualize and analyze hurricanes and I think this webpage below is a good way to visualize one hurricane's path. However, as for speed, I am unsure how I will plot that yet.
+
+-   <https://michaelminn.net/tutorials/r-hurricanes/index.html>
