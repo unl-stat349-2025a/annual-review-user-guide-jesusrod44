@@ -50,7 +50,7 @@ Of course, you want to follow some core basics:
 
 -   Have clear labels and legends
 
--   Don't add complex shapes or unnecessary chart
+-   Don't add complex shapes or unnecessary chart junk
 
 When making a grahic to communicate uncertainty, assume that people have low numeracy and accommodate your visualization to fit their needs. This means adopting a less is more approach. Having too much information on one visualization is not a good idea. Consider taking that information and making multiple graphics to complement each other. For hurricanes, we have many types of hazard maps: wind maps, flood maps, surge maps. If all the information of these maps were combined with a cone of uncertainty map or spaghetti plot, things could get to painful to look at.
 
@@ -105,21 +105,26 @@ library(mapview) # for interactive maps
 library(maps) 
 ```
 
-For the world map in ggplot(), we'll need this. The latter code will outline the states so we can see for sure what states are affected. We will adjust the axis later.
+For the world map in ggplot(), we'll need this. We will save the world and states dataframes from the 'mapdata' package into variables to use for plotting.
 
 ```{r, results = 'hide'}
 world <- map_data("world")
 states <- map_data('state')
+```
+
+Next we'll make the base map we will be making hazard maps on, the map of the world (with the United States borders being visible)! We'll use ggplot() and geom_polygon() to do this. Mapping this follows basic ggplot() rules, but make sure to have "group = group" in the aesethics for geom_polygon() to prevent borders from wanting to conncet to each other.
+
+```{r, results='hide'}
+
 ggplot() + 
   geom_polygon(data = world, aes(x = long, y = lat, group = group), 
                              fill = "gray90", color = "black") +
   geom_polygon(data = states, aes(x = long, y = lat, group = group), 
                fill = "gray90", color = "black")
 
-
 ```
 
-Now I can load in my code. As mentioned before please see the appendix if you need to download code from a website.
+Now I can load in my code. As mentioned before please see the appendix if you need to download code from a website. The code used in this User Guide comes only from one website, there was trouble keeping code from other databases as some files were too big for GitHub for them to be pushed.
 
 ```{r}
 library(rvest)
@@ -149,7 +154,7 @@ storm_tracks <- storm_tracks |>
   mutate(filename = gsub("\\.kmz$", ".kml", filename))
 ```
 
-In this step, I read every file in the storm_tracks dataframe I created from before by telling 'mutate()' to make a new column called data, where I want to read the kml files, which contain spatial data using st_read(). 'st_read()' is a function used to read spatial data, so here that is done to every file in the storm_tracks dataframe.
+In this next step, I read every file in the storm_tracks dataframe I created from before by telling 'mutate()' to make a new column called data, where I want to read the kml files, which contain spatial data using st_read(). 'st_read()' is a function used to read spatial data, so here that is done to every file in the storm_tracks dataframe.
 
 ```{r, results='hide'}
 
@@ -214,7 +219,10 @@ ggplot(world) +
   theme_bw() +
   geom_sf(aes(geometry = geometry, fill = 'red', alpha = 0.5),  show.legend = FALSE, data = cone1) + 
   geom_sf(aes(geometry = geometry),  show.legend = FALSE, data = track1) +
-  coord_sf(xlim = c(-95, -50), ylim = c(10, 45))
+  coord_sf(xlim = c(-95, -50), ylim = c(10, 45)) + 
+  labs(title = 'Map 1:Basic Cone of Uncertainty Map of Hurricane Irma', subtitle = 'September 5th, 2017',
+       x = 'Latitude', 
+       y = 'Longitude')
 
 # Map 2
 ggplot(world) +
@@ -225,12 +233,16 @@ ggplot(world) +
   theme_bw() +
   geom_sf(aes(geometry = geometry, fill = 'red', alpha = 0.5),  show.legend = FALSE, data = cone2) + 
   geom_sf(aes(geometry = geometry),  show.legend = FALSE, data = track2) +
-  coord_sf(xlim = c(-95, -70), ylim = c(10, 45))
+  coord_sf(xlim = c(-95, -70), ylim = c(20, 45)) + 
+  labs(title = 'Map 2:Basic Cone of Uncertainty Map of Hurricane Irma', 
+       subtitle = 'September 7th, 2017',
+       x = 'Latitude', 
+       y = 'Longitude')
 
 
 ```
 
-This last map just compare the 9 observations filtered out to see the cone evolve over time.
+Map 3 is just for fun to see how to cone of uncertainty evolved over time. This is not a map that would be sent out You can see that although the cone is only 60-70% sure the hurricane will remain inside, it continued to remain in the boundaries of the cones. However, the central path of a previous cone was not always included in a new cone.
 
 ```{r}
 ggplot(world) +
@@ -241,14 +253,17 @@ ggplot(world) +
   theme_bw() +
   geom_sf(aes(geometry = geometry, fill = 'red', alpha = 0.5),  show.legend = FALSE, data = cone10) + 
   geom_sf(aes(geometry = geometry),  show.legend = FALSE, data = track10) +
-  coord_sf(xlim = c(-95, -25), ylim = c(10, 45))
+  coord_sf(xlim = c(-95, -25), ylim = c(10, 45)) + 
+  labs(title = 'Map 3:Cone of Uncertainty Plots Showcasing Paths Irma Was Predicted to Take',
+       x = 'Latitude', 
+       y = 'Longitude')
 ```
 
 ### Spaghetti Plots
 
 NOTICE: In my example, there is one problem with my spaghetti plot and that is that plot only uses data from one algorithm, whereas in normal spaghetti plots, they use data from multiple models and sources to show where each model seems to agree the hurricane will go as the most likely.
 
-With that out of the way, it is important to that this isn't a 'true' spaghetti plot, but this code can be modified to with an extra geom_sf() to include data from other sources. You would do this by filtering or joinging your datasets by time or date and that way your lines would all be from the same date.
+With that out of the way, it is important to that this isn't a 'true' spaghetti plot, but this code can be modified to with an extra geom_sf() to include data from other sources. You would do this by filtering or joining your datasets by time or date and that way your lines would all be from the same date.
 
 In my example however, I am just taking the expected paths from one model and plotting them. This is just a basic plot made given with the data at hand.
 
@@ -261,7 +276,10 @@ ggplot(world) +
                fill = "gray90", color = "black") +
   theme_bw() +
   geom_sf(aes(geometry = geometry, alpha = 0.00001),  show.legend = FALSE, data = tracks) + 
-  coord_sf(xlim = c(-95, -25), ylim = c(10, 45))
+  coord_sf(xlim = c(-95, -25), ylim = c(10, 45)) + 
+  labs(title = 'Map 4:Rough Spaghetti Plots Showcasing Paths Irma Was Predicted To Take',
+       x = 'Latitude', 
+       y = 'Longitude')
 
 
 ```
@@ -270,7 +288,9 @@ From the map above, we can see the path the hurricane took by looking at where t
 
 ## Help With Spatial Data
 
-In my experience, the 'sf' package is very helpful and is what I used to work with spatial data. I listed below a helpful guide I used to help me work and plot spatial data.
+In my experience, the 'sf' package is very helpful and is what I used to work with spatial data. What helped me be able to start plotting spatial data on my own is realizing that spatial data usually has a 'geometry' column that has both latitude and longitude points. Whereas a normal dataframe will usually have these be two separate columns. This will affect the aesthetic() portion in ggplot(), and when using spatial data, you most likely will just need 'geometry = \[geometry column of dataframe\]' instead of ' x = \[longitdude column\], y = \[latitude column\].
+
+I listed below a helpful guide I used to help me work and plot spatial data that covers more than I know what I am confident presenting.
 
 <https://ggplot2.tidyverse.org/reference/ggsf.html>
 
@@ -286,22 +306,12 @@ ggplot(world) +
                fill = "gray90", color = "black") +
   theme_bw() +
   geom_sf(aes(geometry = geometry, fill = 'red', alpha = 0.5),  show.legend = FALSE, data = cone1) + 
-  geom_sf(aes(geometry = geometry),  show.legend = FALSE, data = track1) +
+  geom_sf(aes(geometry = geometry), data = track1) +
   coord_sf(xlim = c(-95, -50), ylim = c(10, 45)) + 
   labs(title = 'Basic Cone of Uncertainty Map of Hurricane Irma', subtitle = 'September 6th, 2017',
        x = 'Latitude', 
        y = 'Longitude')
 ```
-
-## References
-
-Liu, Le, Lace Padilla, Sarah H. Creem-Regehr, and Donald H. House. 2019. “Visualizing Uncertain Tropical Cyclone Predictions Using Representative Samples from Ensembles of Forecast Tracks.” IEEE Transactions on Visualization and Computer Graphics 25 (1): 882–91. https://doi.org/10.1109/TVCG.2018.2865193.
-
-Padilla, Lace M. K., Sarah H. Creem-Regehr, and William Thompson. 2020. “The Powerful Influence of Marks: Visual and Knowledge-Driven Processing in Hurricane Track Displays.” Journal of Experimental Psychology: Applied 26 (1): 1–15. https://doi.org/10.1037/xap0000245.
-
-Spiegelhalter, David. 2017. “Risk and Uncertainty Communication.” Annual Review of Statistics and Its Application 4 (1): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.
-
-“Visualise SF Objects - CoordSf.” - CoordSf • Ggplot2, ggplot2.tidyverse.org/reference/ggsf.html.
 
 ## Appendix
 
@@ -379,6 +389,8 @@ The following code will download all the data into your files. Running this code
 # unlink("data/*.kmz")
 ```
 
+Now we can get our a nice dataframe that includes all the spatial dataframes from our source using this code.
+
 ```{r, results ='hide'}
 storm_tracks <- storm_tracks |>
   mutate(filename = gsub("\\.kmz$", ".kml", filename))
@@ -403,3 +415,14 @@ cones <- filter(storm_tracks, type == "CONE") %>%
 tracks <- filter(storm_tracks, type == "TRACK") %>% 
   rename(storm_code = storm) |>unnest("data")
 ```
+
+
+## References
+
+Liu, Le, Lace Padilla, Sarah H. Creem-Regehr, and Donald H. House. 2019. “Visualizing Uncertain Tropical Cyclone Predictions Using Representative Samples from Ensembles of Forecast Tracks.” IEEE Transactions on Visualization and Computer Graphics 25 (1): 882–91. https://doi.org/10.1109/TVCG.2018.2865193.
+
+Padilla, Lace M. K., Sarah H. Creem-Regehr, and William Thompson. 2020. “The Powerful Influence of Marks: Visual and Knowledge-Driven Processing in Hurricane Track Displays.” Journal of Experimental Psychology: Applied 26 (1): 1–15. https://doi.org/10.1037/xap0000245.
+
+Spiegelhalter, David. 2017. “Risk and Uncertainty Communication.” Annual Review of Statistics and Its Application 4 (1): 31–60. https://doi.org/10.1146/annurev-statistics-010814-020148.
+
+“Visualise SF Objects - CoordSf.” - CoordSf • Ggplot2, ggplot2.tidyverse.org/reference/ggsf.html.

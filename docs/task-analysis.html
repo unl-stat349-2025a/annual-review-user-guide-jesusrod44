@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-16">
+<meta name="dcterms.date" content="2025-03-21">
 
 <title>User Guide: Annual Review Article Topic - Appendix C — Task Analysis</title>
 <style>
@@ -115,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">User Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How to Communicate Hurricane Forecast Uncertainty in Different Ways</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 16, 2025</p>
+      <p class="date">March 21, 2025</p>
     </div>
   </div>
   
@@ -197,9 +197,32 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Here are some questions to guide you through the process of doing a task analysis. You don’t have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction.</p>
 <p>What are the prerequisites, for both knowledge and e.g.&nbsp;software setup?</p>
+<ul>
+<li>R, RStudio, and some required R packages</li>
+<li>knowledge of what a hurricane is</li>
+<li>General knowledge on how ggplot works</li>
+<li>It is preferable that they know how shape data works hopefully I can get it figured out and help someone else figure it out to</li>
+</ul>
 <p>What are the basic requirements for any data that the method is used on? - Are missing values allowed? - Should the data be confined within a certain range? - Does the data have to be approximately normally distributed?</p>
+<ul>
+<li>For my method, I’d like to limit my data to that of Hurricane Katrina (2005), just for simplicity. There are many hurricane databases with multiple hurricanes but I don’t know how that can help me with my task.</li>
+</ul>
 <p>What are the basic components of the task? - Outline these in a bit more detail</p>
+<ul>
+<li>Get Hurricane Katrina data that includes
+<ul>
+<li>Longitude and Latitude data for eye path for sure</li>
+<li>Wind speed</li>
+<li>Damage
+<ul>
+<li>This could be categorical ie Catastrophic, High, Low</li>
+</ul></li>
+</ul></li>
+</ul>
 <p>What decisions does the user need to be prepared to make on the fly?</p>
+<ul>
+<li>I want to supply the download for the csv file(s) so the user does not have to go hunt for some or I will list the websites from where I got them</li>
+</ul>
 <p>What questions should the user ask of the “first draft” of the product? What adjustments may need to be made?</p>
 <section id="additional-guidance" class="level2" data-number="C.1">
 <h2 data-number="C.1" class="anchored" data-anchor-id="additional-guidance"><span class="header-section-number">C.1</span> Additional Guidance</h2>
